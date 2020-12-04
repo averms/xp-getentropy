@@ -59,7 +59,7 @@ elif os == 'windows'
   srcfile = 'getentropy_bcryptgenrandom.c'
 
 elif os == 'darwin'
-  srcfile = 'getentropy_getentropy_sysrandom.c'
+  srcfile = 'getentropy_getentropy_macos.c'
 
 elif os == 'freebsd'
   if cc.has_function('getentropy', prefix: '#include <unistd.h>')
@@ -82,7 +82,11 @@ elif os == 'sunos'
   srcfile = 'getentropy_getrandom.c'
 
 elif os == 'cygwin'
-  srcfile = 'getentropy_getentropy_sysrandom.c'
+  srcfile = 'getentropy_getentropy.c'
+  lib_args += ['-D_DEFAULT_SOURCE']
+
+elif os == 'emscripten'
+  # TODO: impl with get_random or getentropy or something.
 
 endif
 

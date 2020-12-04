@@ -12,5 +12,6 @@ Tested on:
 
 ## TODO
 
+- always return a valid errno, either EIO or EFAULT.
 - test more.
 - document.
