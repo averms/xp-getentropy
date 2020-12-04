@@ -1,0 +1,14 @@
+[binaries]
+c = '/usr/lib/emscripten/emcc'
+cpp = '/usr/lib/emscripten/em++'
+ar = '/usr/lib/emscripten/emar'
+
+[built-in options]
+c_args = ['-s', 'WASM=1', '-s', 'STANDALONE_WASM=1']
+
+[host_machine]
+system = 'emscripten'
+cpu_family = 'wasm64'
+cpu = 'wasm64'
+endian = 'little'
+# vim: ft=toml

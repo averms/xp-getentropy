@@ -89,7 +89,7 @@ elif os == 'cygwin'
   lib_args += ['-D_DEFAULT_SOURCE']
 
 elif os == 'emscripten'
-  # TODO: impl with get_random or getentropy or something.
+  srcfile = 'getentropy_getentropy_wasm.c'
 
 endif
 
