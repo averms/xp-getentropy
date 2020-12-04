@@ -4,6 +4,9 @@
 #include <stdint.h>
 #include <string.h>
 
+void setUp(void) {}
+void tearDown(void) {}
+
 void test_should_be_different(void) {
     uint8_t buf1[20] = {0};
     uint8_t buf2[sizeof buf1] = {0};

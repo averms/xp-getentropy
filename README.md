@@ -10,8 +10,5 @@ Tested on:
 - FreeBSD 12.2
 - macOS 10.14
 
-## TODO
-
-- always return a valid errno, either EIO or EFAULT.
-- test more.
-- document.
+**This library is in a very experimental state. Please wait until I tag a
+release to start using it**.

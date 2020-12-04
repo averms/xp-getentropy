@@ -9,7 +9,7 @@ project('unity', 'c',
     license: 'MIT',
     version: '2.5.1-git',
     meson_version: '>=0.56.0',
-    default_options: ['werror=true', 'c_std=c11']
+    default_options: ['c_std=c11']
 )
 
 unity_dir = include_directories('.')
