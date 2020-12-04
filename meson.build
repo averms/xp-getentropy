@@ -43,13 +43,15 @@ if cc.get_id() in ['gcc', 'clang'] and get_option('warning_level').to_int() == 3
 endif
 
 os = host_machine.system()
+lib_args = []
 
 if os == 'linux'
   if cc.has_function('getrandom', prefix: '#include <sys/random.h>')
-    add_project_arguments('-D_DEFAULT_SOURCE', language: 'c')
+    lib_args += ['-D_DEFAULT_SOURCE']
     srcfile = 'getentropy_getrandom.c'
   else
-    add_project_arguments('-D_POSIX_C_SOURCE=200809L', language: 'c')
+    # Old Linux distros like CentOS 7
+    lib_args += ['-D_POSIX_C_SOURCE=200809L']
     srcfile = 'getentropy_urandom.c'
   endif
 
@@ -60,7 +62,12 @@ elif os == 'darwin'
   srcfile = 'getentropy_getentropy_sysrandom.c'
 
 elif os == 'freebsd'
-  srcfile = 'getentropy_getentropy.c'
+  if cc.has_function('getentropy', prefix: '#include <unistd.h>')
+    srcfile = 'getentropy_getentropy.c'
+  else
+    # FreeBSD 11 is still supported.
+    srcfile = 'getentropy_urandom.c'
+  endif
 
 elif os == 'netbsd'
   srcfile = 'getentropy_sysctl.c'
@@ -95,23 +102,24 @@ if doxygen.found()
   )
 
   custom_target('documentation',
-    build_by_default: true,
+    build_by_default: false,
     command: [doxygen, doxyfile],
     input: files('include/getentropy_xp.h'),
     output: ['html'],
   )
 endif
 
-getentropy_xp_inc = include_directories('include')
-getentropy_xp_lib = static_library('getentropy_xp',
+inc = include_directories('include')
+lib = static_library('getentropy_xp',
   'source' / srcfile,
-  include_directories: getentropy_xp_inc,
+  c_args: lib_args,
+  include_directories: inc,
   implicit_include_directories: false,
 )
 
 getentropy_xp_dep = declare_dependency(
-  link_with: getentropy_xp_lib,
-  include_directories: getentropy_xp_inc,
+  link_with: lib,
+  include_directories: inc,
 )
 
 t_basic = executable('t_basic',
