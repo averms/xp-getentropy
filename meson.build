@@ -1,0 +1,106 @@
+project('getentropy_xp', 'c',
+  version: '0.0.0',
+  license: 'ISC',
+  default_options: [
+    'c_std=c99',
+    'warning_level=3',
+    'strip=true',
+    'buildtype=release',
+  ]
+)
+
+cc = meson.get_compiler('c')
+
+if cc.get_id() in ['gcc', 'clang'] and get_option('warning_level').to_int() == 3
+  add_project_arguments(
+    '-pedantic-errors',
+    '-Wuninitialized',
+    '-Wconversion',
+    '-Wcast-qual',
+    '-Wdouble-promotion',
+    '-Wundef',
+    language: 'c',
+  )
+  if cc.get_id() == 'gcc'
+    add_project_arguments(
+      '-Wshadow=local',
+      '-Wredundant-decls',
+      '-Wformat=2',
+      '-Wnull-dereference',
+      '-Wduplicated-branches',
+      '-Wduplicated-cond',
+      language: 'c',
+    )
+  elif cc.get_id() == 'clang'
+    add_project_arguments(
+      '-Wshadow',
+      '-Wunreachable-code-aggressive',
+      '-Wdeprecated',
+      '-Wno-empty-translation-unit',
+      language: 'c',
+    )
+  endif
+endif
+
+os = host_machine.system()
+
+if os == 'linux'
+  if cc.has_function('getrandom', prefix: '#include <sys/random.h>')
+    add_project_arguments('-D_DEFAULT_SOURCE', language: 'c')
+    srcfile = 'getentropy_getrandom.c'
+  else
+    add_project_arguments('-D_POSIX_C_SOURCE=200809L', language: 'c')
+    srcfile = 'getentropy_urandom.c'
+  endif
+
+elif os == 'windows'
+  srcfile = 'getentropy_bcryptgenrandom.c'
+
+elif os == 'darwin'
+  srcfile = 'getentropy_getentropy_sysrandom.c'
+
+elif os == 'freebsd'
+  srcfile = 'getentropy_getentropy.c'
+
+elif os == 'netbsd'
+  srcfile = 'getentropy_sysctl.c'
+
+elif os == 'openbsd'
+  srcfile = 'getentropy_getentropy.c'
+
+elif os == 'dragonfly'
+  srcfile = 'getentropy_getrandom.c'
+
+elif os == 'sunos'
+  srcfile = 'getentropy_getrandom.c'
+
+elif os == 'cygwin'
+  srcfile = 'getentropy_getentropy_sysrandom.c'
+
+endif
+
+getentropy_xp_inc = include_directories('include')
+getentropy_xp_lib = static_library('getentropy_xp',
+  'source' / srcfile,
+  include_directories: getentropy_xp_inc,
+  implicit_include_directories: false,
+)
+
+getentropy_xp_dep = declare_dependency(
+  link_with: getentropy_xp_lib,
+  include_directories: getentropy_xp_inc,
+)
+
+t_basic = executable('t_basic',
+  'test/basic.c',
+  dependencies: getentropy_xp_dep,
+  implicit_include_directories: false,
+)
+t_asking_for_257 = executable('t_asking_for_257',
+  'test/asking_for_257.c',
+  dependencies: getentropy_xp_dep,
+  implicit_include_directories: false,
+)
+
+test('basic', t_basic)
+test('asking_for_257', t_asking_for_257)

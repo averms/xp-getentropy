@@ -1,0 +1,16 @@
+# build directories
+/build/
+/b-*/
+
+# clangd stuff
+.cache/
+compile_commands.json
+
+# IDE stuff
+/.vscode/
+
+# Misc
+/openbsd/
+/manpages/
+/getentropy_xp.tar
+/*.Dockerfile
