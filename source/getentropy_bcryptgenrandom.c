@@ -17,7 +17,7 @@
  * Emulates getentropy(2) using BCryptGenRandom.
  */
 
-#include "getentropy_xp.h"
+#include "xp_getentropy.h"
 #include <sys/types.h>
 #include <bcrypt.h>
 #include <errno.h>
@@ -29,7 +29,7 @@
  * to be a well-seeded, cryptographically strong random number generator.
  * https://docs.microsoft.com/en-us/windows/win32/api/bcrypt/nf-bcrypt-bcryptgenrandom
  */
-int getentropy_xp(void *buf, size_t len) {
+int xp_getentropy(void *buf, size_t len) {
     if (len > 256) {
         errno = EIO;
         return -1;

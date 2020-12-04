@@ -44,7 +44,7 @@ static inline size_t getentropy_sysctl(u_char *buf, size_t size) {
     return done;
 }
 
-int getentropy_xp(void *buf, size_t len) {
+int xp_getentropy(void *buf, size_t len) {
     if (len > 256) {
         errno = EIO;
         return -1;

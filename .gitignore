@@ -12,5 +12,5 @@ compile_commands.json
 # Misc
 /openbsd/
 /manpages/
-/getentropy_xp.tar
+/xp_getentropy.tar
 /*.Dockerfile

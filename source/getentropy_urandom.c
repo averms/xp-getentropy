@@ -18,13 +18,13 @@
  * Emulates getentropy(2) using /dev/urandom.
  */
 
-#include "getentropy_xp.h"
+#include "xp_getentropy.h"
 #include <sys/stat.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <unistd.h>
 
-int getentropy_xp(void *buf, size_t len) {
+int xp_getentropy(void *buf, size_t len) {
     if (len > 256) {
         errno = EIO;
         return -1;

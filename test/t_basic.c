@@ -1,4 +1,4 @@
-#include "getentropy_xp.h"
+#include "xp_getentropy.h"
 #include <stdio.h>
 #include <stdint.h>
 #define SIZE 256
@@ -6,9 +6,9 @@
 int main(void) {
     uint8_t bs[SIZE];
 
-    int res = getentropy_xp(bs, SIZE);
+    int res = xp_getentropy(bs, SIZE);
     if (res == -1) {
-        fputs("Getting entropy failed.\n", stderr);
+        fputs("Getting entropy failed.\n", stdout);
         return 1;
     }
 

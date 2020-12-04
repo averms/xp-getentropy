@@ -19,11 +19,11 @@
  * and Oracle Solaris.
  */
 
-#include "getentropy_xp.h"
+#include "xp_getentropy.h"
 #include <sys/random.h>
 #include <errno.h>
 
-int getentropy_xp(void *buf, size_t len) {
+int xp_getentropy(void *buf, size_t len) {
     if (len > 256) {
         errno = EIO;
         return -1;

@@ -2,14 +2,14 @@
 // Distributed under the ISC license, see LICENSE file for details.
 
 // clang-format off
-#include "getentropy_xp.h"
+#include "xp_getentropy.h"
 // sys/random.h is not self-contained on macOS. It needs Availibility.h before it.
 #include <Availibility.h>
 #include <sys/random.h>
 #include <errno.h>
 // clang-format on
 
-int getentropy_xp(void *buf, size_t len) {
+int xp_getentropy(void *buf, size_t len) {
     if (getentropy(buf, len) == -1) {
         // macOS sets errno to EINVAL for invalid address. Standard OpenBSD behavior is
         // EFAULT.

@@ -1,4 +1,4 @@
-project('getentropy_xp', 'c',
+project('xp_getentropy', 'c',
   version: '0.0.0',
   license: 'ISC',
   default_options: [
@@ -108,34 +108,34 @@ if doxygen.found()
   custom_target('documentation',
     build_by_default: false,
     command: [doxygen, doxyfile],
-    input: files('include/getentropy_xp.h'),
+    input: files('include/xp_getentropy.h'),
     output: ['html'],
   )
 endif
 
 inc = include_directories('include')
-lib = static_library('getentropy_xp',
+lib = static_library(meson.project_name(),
   'source' / srcfile,
   c_args: lib_args,
   include_directories: inc,
   implicit_include_directories: false,
 )
 
-getentropy_xp_dep = declare_dependency(
+xp_getentropy_dep = declare_dependency(
   link_with: lib,
   include_directories: inc,
 )
 
-t_basic = executable('t_basic',
-  'test/basic.c',
-  dependencies: getentropy_xp_dep,
-  implicit_include_directories: false,
-)
-t_asking_for_257 = executable('t_asking_for_257',
-  'test/asking_for_257.c',
-  dependencies: getentropy_xp_dep,
-  implicit_include_directories: false,
-)
+unity_proj = subproject('unity')
+unity_dep = dependency('unity')
 
-test('basic', t_basic)
-test('asking_for_257', t_asking_for_257)
+t_basic = executable('t_basic',
+  'test/t_basic.c',
+  dependencies: xp_getentropy_dep,
+  implicit_include_directories: false,
+)
+t_asking_for_257 = executable('t_more',
+  'test/t_more.c',
+  dependencies: [xp_getentropy_dep, unity_dep],
+  implicit_include_directories: false,
+)

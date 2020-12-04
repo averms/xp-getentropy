@@ -22,7 +22,7 @@ debug() {
 
 tar() {
     local version="$(git describe --always)"
-    local folder="getentropy-xp-$version"
+    local folder="xp-getentropy-$version"
     local tarball="$folder.tar"
     local zstdcmd="zstd --rm --force -q -10 -T0"
 
