@@ -7,14 +7,17 @@
 
 project('unity', 'c',
     license: 'MIT',
-    meson_version: '>=0.53.0',
+    version: '2.5.1-git',
+    meson_version: '>=0.56.0',
     default_options: ['werror=true', 'c_std=c11']
 )
 
 unity_dir = include_directories('.')
 
 unity_lib = static_library(meson.project_name(),
-    files('unity.c'),
-    include_directories: unity_dir)
+  files('unity.c'),
+  implicit_include_directories: false,
+)
 
 unity_dep = declare_dependency(link_with: unity_lib, include_directories: unity_dir)
+meson.override_dependency('unity', unity_dep)
