@@ -40,6 +40,9 @@ if cc.get_id() in ['gcc', 'clang'] and get_option('warning_level').to_int() == 3
       language: 'c',
     )
   endif
+  if get_option('optimization') == 'g'
+    add_project_arguments('-D_FORTIFY_SOURCE=1', language: 'c')
+  endif
 endif
 
 os = host_machine.system()

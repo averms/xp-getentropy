@@ -20,6 +20,13 @@ debug() {
         "b-${FUNCNAME[0]}"
 }
 
+asan() {
+    CC=clang CC_LD=lld meson setup \
+        -Ddebug=false -Doptimization=1 -Dwarning_level=3 \
+        -Db_sanitize=address -Db_lundef=false \
+        "b-${FUNCNAME[0]}"
+}
+
 tar() {
     local version="$(git describe --always)"
     local folder="xp-getentropy-$version"

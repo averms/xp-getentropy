@@ -1,6 +1,6 @@
 #include "xp_getentropy.h"
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
 #define SIZE 256
 
 int main(void) {
