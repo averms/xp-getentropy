@@ -35,8 +35,11 @@ int getentropy_xp(void *buf, size_t len) {
     do {
         ret = getrandom(buf, len, GRND_NONBLOCK);
     } while (ret < 0 && errno == EINTR);
-    // Maybe EFAULT, EAGAIN, EINVAL, etc.
-    if ((size_t)ret != len) return -1;
+    if ((size_t)ret != len) {
+        // Maybe EAGAIN, EINVAL, ENOSYS, etc but getentropy can only have 1 of 2 errnos.
+        if (errno != EFAULT) errno = EIO;
+        return -1;
+    }
     errno = pre_errno;
     return 0;
 }
