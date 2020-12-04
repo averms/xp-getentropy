@@ -6,8 +6,8 @@
 
 #include <stddef.h>
 
-/// Fill a buffer with high-quality entropy. The maximum permitted buffer size is 256
-/// bytes.
+/// @brief Fill a buffer with high-quality entropy. The maximum permitted buffer size is
+/// 256 bytes.
 /// @param[out] buf The buffer to fill.
 /// @param[in] len The length of the buffer, in bytes.
 /// @retval 0 Succeeded.
