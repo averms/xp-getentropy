@@ -1,0 +1,29 @@
+# Only options that deviate from the default are included
+
+# Get Project name and version from Meson
+PROJECT_NAME = @DOXY_NAME@
+PROJECT_NUMBER = @DOXY_VERSION@
+
+# Add sources
+INPUT = @DOXY_ROOT@/README.md @DOXY_ROOT@/include
+EXTRACT_ALL = YES
+RECURSIVE = YES
+OUTPUT_DIRECTORY = @DOXY_OUTPUT@
+
+# Use the README as a main page
+USE_MDFILE_AS_MAINPAGE = @DOXY_ROOT@/README.md
+
+# Warnings
+QUIET = YES
+WARNINGS = YES
+WARN_IF_UNDOCUMENTED = YES
+
+# set relative include paths
+FULL_PATH_NAMES = YES
+STRIP_FROM_PATH = @DOXY_ROOT@/include
+
+GENERATE_XML = NO
+GENERATE_HTML = YES
+GENERATE_LATEX = NO
+XML_PROGRAMLISTING = NO
+CREATE_SUBDIRS = NO

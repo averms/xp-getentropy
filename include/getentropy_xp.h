@@ -6,7 +6,12 @@
 
 #include <stddef.h>
 
-/// TODO: doc
+/// Fill a buffer with high-quality entropy. The maximum permitted buffer size is 256
+/// bytes.
+/// @param[out] buf The buffer to fill.
+/// @param[in] len The length of the buffer, in bytes.
+/// @retval 0 Succeeded.
+/// @retval -1 Failed.
 int getentropy_xp(void *buf, size_t len);
 
 #endif

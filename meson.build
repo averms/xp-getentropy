@@ -79,6 +79,29 @@ elif os == 'cygwin'
 
 endif
 
+doxygen = find_program('doxygen', required: false)
+if doxygen.found()
+  doxy_conf = configuration_data({
+    'DOXY_NAME': meson.project_name(),
+    'DOXY_VERSION': meson.project_version(),
+    'DOXY_ROOT': meson.project_source_root(),
+    'DOXY_OUTPUT': meson.current_build_dir(),
+  })
+
+  doxyfile = configure_file(
+    input: 'documentation/Doxyfile.in',
+    output: 'Doxyfile',
+    configuration: doxy_conf,
+  )
+
+  custom_target('documentation',
+    build_by_default: true,
+    command: [doxygen, doxyfile],
+    input: files('include/getentropy_xp.h'),
+    output: ['html'],
+  )
+endif
+
 getentropy_xp_inc = include_directories('include')
 getentropy_xp_lib = static_library('getentropy_xp',
   'source' / srcfile,
