@@ -21,9 +21,7 @@
 
 #include "getentropy_xp.h"
 #include <sys/random.h>
-#include <sys/syscall.h>
 #include <errno.h>
-#include <unistd.h>
 
 int getentropy_xp(void *buf, size_t len) {
     if (len > 256) {
@@ -32,13 +30,13 @@ int getentropy_xp(void *buf, size_t len) {
     }
 
     int pre_errno = errno;
-    long ret;
+    ssize_t ret;
     // Repeat if interrupted by signal
     do {
-        ret = syscall(SYS_getrandom, buf, len, GRND_NONBLOCK);
+        ret = getrandom(buf, len, GRND_NONBLOCK);
     } while (ret < 0 && errno == EINTR);
     // Maybe EFAULT, EAGAIN, EINVAL, etc.
-    if ((unsigned long)ret != len) return -1;
+    if ((size_t)ret != len) return -1;
     errno = pre_errno;
     return 0;
 }
