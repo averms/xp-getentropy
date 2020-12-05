@@ -9,10 +9,10 @@ sources:
 tasks:
   - configure: |
       cd xp-getentropy
-      pip3 install meson
+      pip3 install --user meson
       ~/.local/bin/meson setup b-release
   - build-and-test: |
-      cd b-release
+      cd xp-getentropy/b-release
       ninja -v
       ./t_basic
       ./t_more
