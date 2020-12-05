@@ -1,5 +1,8 @@
 # getentropy cross-platform
 
+[![builds.sr.ht status](https://builds.sr.ht/~aman/xp-getentropy.svg)](https://builds.sr.ht/~aman/xp-getentropy?)
+[![GitHub Actions status](https://github.com/a-vrma/xp-getentropy/workflows/GitHub%20CI/badge.svg)](https://github.com/a-vrma/xp-getentropy/actions)
+
 A cross-platform way to get cryptographically-secure random bytes.
 
 Tested on:
