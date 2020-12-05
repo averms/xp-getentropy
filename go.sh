@@ -33,7 +33,7 @@ tar() {
     local tarball="$folder.tar"
     local zstdcmd="zstd --rm --force -q -10 -T0"
 
-    git archive --prefix "${folder}/" --output "$tarball" @
+    git archive --verbose --prefix "${folder}/" --output "$tarball" @
     $zstdcmd "$tarball"
 }
 
