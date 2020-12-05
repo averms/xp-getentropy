@@ -1,4 +1,5 @@
 #include "xp_getentropy.h"
+#include <errno.h>
 #include <stdint.h>
 #include <stdio.h>
 #define SIZE 256
@@ -9,6 +10,7 @@ int main(void) {
     int res = xp_getentropy(bs, SIZE);
     if (res == -1) {
         fputs("Getting entropy failed.\n", stdout);
+        fprintf(stdout, "Errno was %d.\n", errno);
         return 1;
     }
 
