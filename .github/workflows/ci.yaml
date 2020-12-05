@@ -17,6 +17,9 @@ on:
 
 jobs:
   test-windows:
+    env:
+      CC: msvc
+      CC_LD: link
     runs-on: windows-2019
     defaults:
       run:
@@ -48,6 +51,9 @@ jobs:
           - macos-10.15
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Add .local/bin to PATH
+        run: |
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
       - uses: actions/checkout@v2
       - name: Install meson and ninja
         run: |
@@ -55,7 +61,7 @@ jobs:
           pip3 install ninja
       - name: Configure
         run: |
-          ~/.local/bin/meson setup b-release
+          meson setup b-release
       - name: Build and test
         working-directory: ./b-release
         run: |
