@@ -21,7 +21,10 @@ if cc.get_id() in ['gcc', 'clang'] and get_option('warning_level').to_int() == 3
     '-Wundef',
     language: 'c',
   )
-  if cc.get_id() == 'gcc'
+
+  cc_major = cc.version().split('.')[0].to_int()
+  # GCC 5 and below (maybe 6) die on unrecognized warnings.
+  if cc.get_id() == 'gcc' and cc_major >= 7
     add_project_arguments(
       '-Wshadow=local',
       '-Wredundant-decls',
