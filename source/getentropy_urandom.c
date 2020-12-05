@@ -24,6 +24,10 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#if !defined(XP_RANDOM_FILE)
+#define XP_RANDOM_FILE "/dev/urandom"
+#endif
+
 int xp_getentropy(void *buf, size_t len) {
     if (len > 256) {
         errno = EIO;
@@ -35,7 +39,7 @@ int xp_getentropy(void *buf, size_t len) {
 
 start:
     flags = O_RDONLY | O_NOFOLLOW | O_CLOEXEC;
-    fd = open("/dev/urandom", flags, 0);
+    fd = open(XP_RANDOM_FILE, flags, 0);
     if (fd == -1) {
         if (errno == EINTR) goto start;
         goto nodevrandom;

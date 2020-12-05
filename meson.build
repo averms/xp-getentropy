@@ -72,6 +72,7 @@ elif os == 'freebsd'
     srcfile = 'getentropy_getentropy.c'
   else
     # FreeBSD 11 is still supported.
+    lib_args += ['-DXP_RANDOM_FILE="/dev/random"']
     srcfile = 'getentropy_urandom.c'
   endif
 
