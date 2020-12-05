@@ -16,7 +16,27 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  test-windows:
+    runs-on: windows-2019
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install meson and ninja
+        run: |
+          pip3 install meson
+          pip3 install ninja
+      - name: Configure
+        run: |
+          meson setup b-release
+      - name: Build and test
+        working-directory: b-release
+        run: |
+          ninja -v
+          .\t_basic
+          .\t_more
+  test-unix:
     strategy:
       fail-fast: false
       matrix:
@@ -24,16 +44,21 @@ jobs:
           - ubuntu-20.04
           - ubuntu-18.04
           - ubuntu-16.04
-          - windows-2019
           - macos-11.0
           - macos-10.15
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
-      - run: |
+      - name: Install meson and ninja
+        run: |
           pip3 install meson
           pip3 install ninja
-          meson setup b-release
-          ninja -C b-release -v
-          ./b-release/t_basic
-          ./b-release/t_more
+      - name: Configure
+        run: |
+          ~/.local/bin/meson setup b-release
+      - name: Build and test
+        working-directory: ./b-release
+        run: |
+          ninja -v
+          ./t_basic
+          ./t_more
