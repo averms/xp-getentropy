@@ -1,0 +1,18 @@
+image: alpine/latest
+arch: x86_64
+packages:
+  - build-base
+  - ninja
+  - py3-pip
+sources:
+  - https://git.sr.ht/~aman/xp-getentropy
+tasks:
+  - configure: |
+      cd xp-getentropy
+      pip3 install meson
+      ~/.local/bin/meson setup b-release
+  - build-and-test: |
+      cd b-release
+      ninja -v
+      ./t_basic
+      ./t_more

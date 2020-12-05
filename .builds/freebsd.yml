@@ -1,0 +1,18 @@
+# older freebsd.
+image: freebsd/11.x
+arch: amd64
+packages:
+  - ninja
+  - py37-pip
+sources:
+  - https://git.sr.ht/~aman/xp-getentropy
+tasks:
+  - configure: |
+      cd xp-getentropy
+      pip3 install meson
+      ~/.local/bin/meson setup b-release
+  - build-and-test: |
+      cd b-release
+      ninja -v
+      ./t_basic
+      ./t_more
