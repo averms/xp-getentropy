@@ -1,5 +1,6 @@
 project('xp_getentropy', 'c',
   version: '0.0.0',
+  meson_version: '>=0.56.0',
   license: 'ISC',
   default_options: [
     'c_std=c99',
@@ -21,7 +22,6 @@ if cc.get_id() in ['gcc', 'clang'] and get_option('warning_level').to_int() == 3
     '-Wundef',
     language: 'c',
   )
-
   cc_major = cc.version().split('.')[0].to_int()
   # GCC 5 and below (maybe 6) die on unrecognized warnings.
   if cc.get_id() == 'gcc' and cc_major >= 7
@@ -97,39 +97,15 @@ elif os == 'emscripten'
 
 endif
 
-doxygen = find_program('doxygen', required: false)
-if doxygen.found()
-  doxy_conf = configuration_data({
-    'DOXY_NAME': meson.project_name(),
-    'DOXY_VERSION': meson.project_version(),
-    'DOXY_ROOT': meson.project_source_root(),
-    'DOXY_OUTPUT': meson.current_build_dir(),
-  })
-
-  doxyfile = configure_file(
-    input: 'documentation/Doxyfile.in',
-    output: 'Doxyfile',
-    configuration: doxy_conf,
-  )
-
-  custom_target('documentation',
-    build_by_default: false,
-    command: [doxygen, doxyfile],
-    input: files('include/xp_getentropy.h'),
-    output: ['html'],
-  )
-endif
-
 inc = include_directories('include')
-lib = static_library(meson.project_name(),
-  'source' / srcfile,
+lib = static_library(meson.project_name(), 'source' / srcfile,
   c_args: lib_args,
   include_directories: inc,
   implicit_include_directories: false,
 )
-
 xp_getentropy_dep = declare_dependency(
   link_with: lib,
+  version: meson.project_version(),
   include_directories: inc,
 )
 
