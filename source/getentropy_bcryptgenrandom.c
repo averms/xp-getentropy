@@ -14,7 +14,7 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *
- * Emulates getentropy(2) using BCryptGenRandom.
+ * Emulates getentropy using BCryptGenRandom.
  */
 
 #include "xp_getentropy.h"
