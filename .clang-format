@@ -16,20 +16,6 @@ IndentCaseLabels: false
 IndentGotoLabels: false
 IndentWidth: 4
 IndentWrappedFunctionNames: true
-IncludeBlocks: Merge
-# Local first, system second.
-IncludeCategories:
-  # local include
-  - Regex: '^"'
-    Priority: 1
-  # unity test
-  - Regex: '^<unity'
-    Priority: 2
-  # at least one slash.
-  - Regex: '^<[^/]+/'
-    Priority: 3
-  # no slashes, maybe libc
-  - Regex: '^<'
-    Priority: 4
+SortIncludes: false
 # vim: ft=yaml
 ...

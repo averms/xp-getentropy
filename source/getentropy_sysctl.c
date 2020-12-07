@@ -17,8 +17,8 @@
  * Emulates getentropy using sysctl on NetBSD.
  */
 
-#include <sys/sysctl.h>
 #include <sys/types.h>
+#include <sys/sysctl.h>
 #include <errno.h>
 #include <stddef.h>
 
