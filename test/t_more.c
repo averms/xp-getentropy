@@ -1,6 +1,5 @@
 #include "xp_getentropy.h"
 #include <unity.h>
-#include <errno.h>
 #include <stdint.h>
 #include <string.h>
 
@@ -35,8 +34,6 @@ void test_len_too_large(void) {
 
     const int ret = xp_getentropy(buf, sizeof buf);
     TEST_ASSERT_EQUAL_INT(-1, ret);
-
-    TEST_ASSERT_EQUAL_INT(EIO, errno);
 }
 
 int main(void) {

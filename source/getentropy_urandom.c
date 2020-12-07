@@ -30,7 +30,6 @@
 
 int xp_getentropy(void *buf, size_t len) {
     if (len > 256) {
-        errno = EIO;
         return -1;
     }
     struct stat st;
@@ -67,6 +66,5 @@ start:
     return 0;
 
 nodevrandom:
-    errno = EIO;
     return -1;
 }
