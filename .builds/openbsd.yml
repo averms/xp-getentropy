@@ -2,13 +2,13 @@ image: openbsd/6.7
 arch: amd64
 packages:
   - ninja
-  - py-pip
+  - py3-pip
 sources:
   - https://git.sr.ht/~aman/xp-getentropy
 tasks:
   - configure: |
       cd xp-getentropy
-      pip install --user meson
+      pip3.7 install --user meson
       ~/.local/bin/meson setup b-release
   - build-and-test: |
       cd xp-getentropy/b-release
