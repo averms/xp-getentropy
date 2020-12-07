@@ -13,6 +13,7 @@ Tested on:
 - Linux 4.4 with glibc (Ubuntu 16.04)
 - Various other Linux distros but nothing super old yet
 - FreeBSD 11.4 and 12.2
+- OpenBSD 6.7
 - macOS 10.14, 10.15, and 11
 - Emscripten 2.0.10 (not WASM, just the JS output)
 
