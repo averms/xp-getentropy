@@ -24,6 +24,8 @@
 #include <stdint.h>
 #include <windows.h>
 
+#pragma comment(lib, "bcrypt.lib")
+
 /*
  * On Windows, BCryptGenRandom with BCRYPT_USE_SYSTEM_PREFERRED_RNG is supposed
  * to be a well-seeded, cryptographically strong random number generator.
