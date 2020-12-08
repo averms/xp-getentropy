@@ -13,4 +13,4 @@
 /// @return 0 on success and -1 on failure.
 int xp_getentropy(void *buf, size_t len);
 
-#endif
+#endif  // XP_GETENTROPY_H_30185295
