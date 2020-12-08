@@ -7,7 +7,7 @@
 void setUp(void) {}
 void tearDown(void) {}
 
-void test_should_be_different(void) {
+static void test_should_be_different(void) {
     uint8_t buf1[20] = {0};
     uint8_t buf2[sizeof buf1] = {0};
 
@@ -20,7 +20,7 @@ void test_should_be_different(void) {
     TEST_ASSERT(memcmp(buf1, buf2, sizeof buf1) != 0);
 }
 
-void test_zero_len(void) {
+static void test_zero_len(void) {
     uint8_t zero[20] = {0};
     uint8_t buf2[sizeof zero] = {0};
 
@@ -30,7 +30,7 @@ void test_zero_len(void) {
     TEST_ASSERT_EQUAL_MEMORY(zero, buf2, sizeof zero);
 }
 
-void test_len_too_large(void) {
+static void test_len_too_large(void) {
     uint8_t buf[257];
 
     const int ret = xp_getentropy(buf, sizeof buf);

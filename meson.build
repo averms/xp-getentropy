@@ -36,10 +36,12 @@ if cc.get_id() in ['gcc', 'clang'] and get_option('warning_level').to_int() == 3
     )
   elif cc.get_id() == 'clang'
     add_project_arguments(
-      '-Wshadow',
-      '-Wunreachable-code-aggressive',
-      '-Wdeprecated',
-      '-Wno-empty-translation-unit',
+      # '-Wshadow',
+      # '-Wunreachable-code-aggressive',
+      # '-Wdeprecated',
+      # '-Wno-empty-translation-unit',
+      # '-Wassign-enum',
+      '-Weverything',
       language: 'c',
     )
   endif
