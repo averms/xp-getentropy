@@ -8,6 +8,10 @@ compile_commands.json
 
 # IDE stuff
 /.vscode/
+/.idea/
+
+# Portable meson
+/meson-portable/
 
 # Misc
 /openbsd/
