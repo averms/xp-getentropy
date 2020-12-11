@@ -1,6 +1,7 @@
 version: '{build}'
 image: 'Visual Studio 2017'
 environment:
+  PATH: '%PATH%;C:\msys64\mingw64\bin'
   matrix:
     - cc: 'msvc-15.9'
       path: 'idk'
