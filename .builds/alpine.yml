@@ -7,7 +7,7 @@ packages:
 sources:
   - https://git.sr.ht/~aman/xp-getentropy
 secrets:
-  - ba1d1c76-5d8b-4cd2-9ff9-e70cfbe9d504
+  - 849deec7-0940-41c1-b90a-0296e8a3a9a5
 shell: false
 tasks:
   - configure: |
@@ -22,9 +22,11 @@ tasks:
   - mirror-to-github: |
       GH_TOKEN="$(< ~/.gh-token)"
       finish() {
-        cd ~ && rm -rf sr.ht-repo .gh-token && GH_TOKEN=
+        cd ~ && rm -rf sr.ht-repo .gh-token .bash_history && GH_TOKEN=
       }
       trap finish EXIT
       git clone --mirror https://git.sr.ht/~aman/xp-getentropy ~/sr.ht-repo
       cd sr.ht-repo
-      git push "https://a-vrma:${GH_TOKEN}@github.com/xp-getentropy.git" --all --prune --follow-tags
+      set +x
+      git push "https://a-vrma:${GH_TOKEN}@github.com/a-vrma/xp-getentropy.git" --all --prune --follow-tags
+      set -x
