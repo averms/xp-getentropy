@@ -2,6 +2,7 @@
 
 [![builds.sr.ht status](https://builds.sr.ht/~aman/xp-getentropy.svg)](https://builds.sr.ht/~aman/xp-getentropy?)
 [![GitHub Actions status](https://github.com/a-vrma/xp-getentropy/workflows/GitHub%20CI/badge.svg)](https://github.com/a-vrma/xp-getentropy/actions)
+[![Appveyor status](https://ci.appveyor.com/api/projects/status/75kw22knil3leahx?svg=true)](https://ci.appveyor.com/project/ayofloweshiou/xp-getentropy)
 
 A cross-platform way to get cryptographically-secure random bytes.
 
@@ -17,6 +18,7 @@ Tested on:
 - Emscripten 2.0.10 (not WASM, just the JS output)
 - Windows Server 2019 with MSVC 16.8
 - Windows Server 2016 with MSVC 15.9
+- Cygwin 3.0.7
 
 **This library is in a very experimental state. Please wait until I tag a
 release to start using it**.
@@ -31,7 +33,7 @@ There is a single function, `xp_getentropy`. It works like this:
 /// @param[out] buf The buffer to fill.
 /// @param[in] len The length of the buffer, in bytes.
 /// @return 0 on success and -1 on failure.
-int xp_getentropy(void *buf, size_t len);
+int xp_getentropy(void* buf, size_t len);
 ```
 
 ## legal
