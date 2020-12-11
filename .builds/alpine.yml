@@ -27,4 +27,4 @@ tasks:
       trap finish EXIT
       git clone --mirror https://git.sr.ht/~aman/xp-getentropy ~/sr.ht-repo
       cd sr.ht-repo
-      git push "https://a-vrma:${GH_TOKEN}@github.com/xp-getentropy.git" --all --prune --tags || true
+      git push "https://a-vrma:${GH_TOKEN}@github.com/xp-getentropy.git" --all --prune --follow-tags
