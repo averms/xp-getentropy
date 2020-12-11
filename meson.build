@@ -64,7 +64,7 @@ if os == 'linux'
   endif
 
 elif os == 'windows'
-  srcfile = 'getentropy_bcryptgenrandom.c'
+  srcfile = 'getentropy_rtlgenrandom.c'
 
 elif os == 'darwin'
   srcfile = 'getentropy_getentropy_macos.c'
