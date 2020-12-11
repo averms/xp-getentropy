@@ -1,0 +1,24 @@
+version: '{build}'
+image: 'Visual Studio 2017'
+environment:
+  matrix:
+    - cc: 'msvc-15.9'
+      path: 'idk'
+    # - 'C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1'
+build:
+  verbosity: minimal
+before_build: |
+  pip3 install meson ninja
+build_script:
+  - ps: |
+      meson setup b-release
+      cd b-release
+      ninja -v
+test_script:
+  - ps: |
+      .\t_basic
+      .\t_more
+
+# - cmd: |
+#   call "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64
+#   call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86_amd64

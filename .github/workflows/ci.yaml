@@ -26,12 +26,10 @@ jobs:
       - name: Install meson and ninja
         run: |
           pip3 install meson ninja
-      - name: Configure
+      - name: Build and test
         run: |
           meson setup -Dc_std=c11 b-release
-      - name: Build and test
-        working-directory: b-release
-        run: |
+          cd b-release
           ninja -v
           .\t_basic
           .\t_more
