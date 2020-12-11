@@ -4,6 +4,6 @@
 #include "xp_getentropy.h"
 #include <unistd.h>
 
-int xp_getentropy(void *buf, size_t len) {
+int xp_getentropy(void* buf, size_t len) {
     return getentropy(buf, len);
 }

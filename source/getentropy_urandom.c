@@ -28,7 +28,7 @@
 #define XP_RANDOM_FILE "/dev/urandom"
 #endif
 
-int xp_getentropy(void *buf, size_t len) {
+int xp_getentropy(void* buf, size_t len) {
     if (len > 256) {
         errno = EIO;
         return -1;
@@ -53,7 +53,7 @@ start:
 
     for (size_t i = 0; i < len;) {
         size_t wanted = len - i;
-        ssize_t ret = read(fd, (char *)buf + i, wanted);
+        ssize_t ret = read(fd, (char*)buf + i, wanted);
 
         if (ret == -1) {
             if (errno == EAGAIN || errno == EINTR) continue;

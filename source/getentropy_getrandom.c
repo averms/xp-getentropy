@@ -23,7 +23,7 @@
 #include <sys/random.h>
 #include <errno.h>
 
-int xp_getentropy(void *buf, size_t len) {
+int xp_getentropy(void* buf, size_t len) {
     if (len > 256) {
         errno = EIO;
         return -1;

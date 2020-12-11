@@ -11,10 +11,11 @@
 #include <errno.h>
 // clang-format on
 
-int xp_getentropy(void *buf, size_t len) {
+int xp_getentropy(void* buf, size_t len) {
     if (getentropy(buf, len) == -1) {
         // macOS sets errno to EINVAL if len > 256, contrary to the man page.
-        // See https://opensource.apple.com/source/xnu/xnu-6153.141.1/bsd/dev/random/randomdev.c.auto.html.
+        // See
+        // https://opensource.apple.com/source/xnu/xnu-6153.141.1/bsd/dev/random/randomdev.c.auto.html.
         // Rectify to conform to OpenBSD behavior.
         if (errno == EINVAL) {
             errno = EIO;

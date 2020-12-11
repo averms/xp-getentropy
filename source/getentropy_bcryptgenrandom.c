@@ -31,7 +31,7 @@
  * to be a well-seeded, cryptographically strong random number generator.
  * https://docs.microsoft.com/en-us/windows/win32/api/bcrypt/nf-bcrypt-bcryptgenrandom
  */
-int xp_getentropy(void *buf, size_t len) {
+int xp_getentropy(void* buf, size_t len) {
     if (len > 256) {
         errno = EIO;
         return -1;

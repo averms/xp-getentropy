@@ -10,7 +10,7 @@ BinPackParameters: false
 BreakBeforeBinaryOperators: NonAssignment
 ColumnLimit: 88
 CommentPragmas: ""
-PointerAlignment: Right
+PointerAlignment: Left
 DerivePointerAlignment: false
 IndentCaseLabels: false
 IndentGotoLabels: false
