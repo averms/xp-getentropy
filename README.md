@@ -15,6 +15,7 @@ Tested on:
 - OpenBSD 6.7
 - macOS 10.14, 10.15, and 11
 - Emscripten 2.0.10 (not WASM, just the JS output)
+- Windows Server 2019 with MSVC 16.8
 
 **This library is in a very experimental state. Please wait until I tag a
 release to start using it**.
