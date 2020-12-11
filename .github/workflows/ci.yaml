@@ -34,7 +34,7 @@ jobs:
           pip3 install meson ninja
       - name: Build and test
         run: |
-          meson setup -Dc_std=c11 b-release
+          meson setup b-release
           cd b-release
           ninja -v
           .\t_basic
