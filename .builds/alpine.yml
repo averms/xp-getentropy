@@ -6,6 +6,9 @@ packages:
   - py3-pip
 sources:
   - https://git.sr.ht/~aman/xp-getentropy
+secrets:
+  - ba1d1c76-5d8b-4cd2-9ff9-e70cfbe9d504
+shell: false
 tasks:
   - configure: |
       cd xp-getentropy
@@ -16,3 +19,12 @@ tasks:
       ninja -v
       ./t_basic
       ./t_more
+  - mirror-to-github: |
+      GH_TOKEN="$(< ~/.gh-token)"
+      finish() {
+        cd ~ && rm -rf sr.ht-repo .gh-token && GH_TOKEN=
+      }
+      trap finish EXIT
+      git clone --mirror https://git.sr.ht/~aman/xp-getentropy ~/sr.ht-repo
+      cd sr.ht-repo
+      git push "https://a-vrma:${GH_TOKEN}@github.com/xp-getentropy.git" --all --prune --tags || true
