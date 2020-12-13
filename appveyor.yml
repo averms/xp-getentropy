@@ -2,6 +2,11 @@ version: "{build}"
 image: "Visual Studio 2017"
 build:
   verbosity: normal
+skip_commits:
+  files:
+    - "*.md"
+    - "LICENSE"
+    - ".gitignore"
 
 build_script:
   - ps: |
