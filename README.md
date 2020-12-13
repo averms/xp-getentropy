@@ -7,7 +7,7 @@
 A cross-platform way to get cryptographically-secure random bytes.
 
 **This library is in a very experimental state. Please wait until I tag a
-release to start using it**.
+release to consider depending on it**.
 
 ## usage
 
@@ -24,6 +24,7 @@ int xp_getentropy(void* buf, size_t len);
 
 ## platforms
 
+Should work on any platform with a C99 compiler.
 Tested on:
 
 - Various Linux distros from kernel 3.10 up to 5.4
@@ -31,8 +32,8 @@ Tested on:
 - OpenBSD 6.7
 - NetBSD 9.1
 - DragonflyBSD 5.8.3
-- OpenIndiana Hipster 2020.10
 - macOS 10.14, 10.15, and 11
+- OpenIndiana Hipster 2020.10
 - Windows Server 2019 with MSVC 16.8
 - Windows Server 2016 with MSVC 15.9
 - Cygwin 3.0.7
