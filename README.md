@@ -6,20 +6,6 @@
 
 A cross-platform way to get cryptographically-secure random bytes.
 
-Tested on:
-
-- Linux 5.4 with glibc (Arch)
-- Linux 5.4 with musl (Alpine)
-- Linux 4.4 with glibc (Ubuntu 16.04)
-- Linux 3.10 with glibc (CentOS 7)
-- FreeBSD 11.4 and 12.2
-- OpenBSD 6.7
-- macOS 10.14, 10.15, and 11
-- Emscripten 2.0.10 (not WASM, just the JS output)
-- Windows Server 2019 with MSVC 16.8
-- Windows Server 2016 with MSVC 15.9
-- Cygwin 3.0.7
-
 **This library is in a very experimental state. Please wait until I tag a
 release to start using it**.
 
@@ -35,6 +21,22 @@ There is a single function, `xp_getentropy`. It works like this:
 /// @return 0 on success and -1 on failure.
 int xp_getentropy(void* buf, size_t len);
 ```
+
+## platforms
+
+Tested on:
+
+- Various Linux distros from kernel 3.10 up to 5.4
+- FreeBSD 11.4 and 12.2
+- OpenBSD 6.7
+- NetBSD 9.1
+- DragonflyBSD 5.8.3
+- OpenIndiana Hipster 2020.10
+- macOS 10.14, 10.15, and 11
+- Windows Server 2019 with MSVC 16.8
+- Windows Server 2016 with MSVC 15.9
+- Cygwin 3.0.7
+- Emscripten 2.0.10 (not WASM, just the JS output)
 
 ## legal
 
