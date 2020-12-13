@@ -1,5 +1,6 @@
 #!/bin/bash
 set -euo pipefail
+shopt -s inherit_errexit
 
 optdebug-clang() {
     CC=clang CC_LD=lld meson setup \
@@ -28,7 +29,11 @@ asan() {
 }
 
 tar() {
-    local version="$(git describe --always)"
+    local version="$(git describe --always --abbrev=20)"
+    if [[ -z $version ]]; then
+        return 1
+    fi
+    version="${version/#v/}"
     local folder="xp-getentropy-$version"
     local tarball="$folder.tar"
     local zstdcmd="zstd --rm --force -q -10 -T0"
