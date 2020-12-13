@@ -11,6 +11,7 @@ compile_commands.json
 /.idea/
 
 # Portable meson
+/meson-portable
 /meson-portable/
 
 # Misc

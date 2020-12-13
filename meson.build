@@ -128,3 +128,5 @@ t_asking_for_257 = executable('t_more',
   dependencies: [xp_getentropy_dep, unity_dep],
   implicit_include_directories: false,
 )
+
+meson.add_dist_script('go.sh', 'predist')

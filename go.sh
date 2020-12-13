@@ -42,6 +42,11 @@ tar() {
     $zstdcmd "$tarball"
 }
 
+predist() {
+    cd "$MESON_DIST_ROOT"
+    rm -r .appveyor/ .builds/
+}
+
 help() { h; }
 h() {
     echo "$0 <task> [args]"
