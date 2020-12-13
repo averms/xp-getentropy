@@ -2,6 +2,7 @@
 #include <errno.h>
 #include <stdint.h>
 #include <stdio.h>
+
 #define SIZE 256
 
 int main(void) {
