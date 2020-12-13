@@ -56,7 +56,6 @@ lib_args = []
 
 if os == 'linux'
   if cc.has_function('getrandom', prefix: '#include <sys/random.h>')
-    lib_args += ['-D_DEFAULT_SOURCE']
     srcfile = 'getentropy_getrandom.c'
   else
     # Old Linux distros like CentOS 7
@@ -74,7 +73,7 @@ elif os == 'freebsd'
   if cc.has_function('getentropy', prefix: '#include <unistd.h>')
     srcfile = 'getentropy_getentropy.c'
   else
-    # FreeBSD 11 is still supported.
+    # FreeBSD 11
     srcfile = 'getentropy_sysctl.c'
   endif
 
@@ -96,6 +95,11 @@ elif os == 'cygwin'
 
 elif os == 'emscripten'
   srcfile = 'getentropy_getentropy_wasm.c'
+else
+  error(
+    meson.project_name() + ' hasn\'t been ported to your platform yet.\n'
+    + 'Please open an issue at https://todo.sr.ht/~aman/xp-getentropy/.'
+  )
 
 endif
 
