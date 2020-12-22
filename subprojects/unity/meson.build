@@ -9,11 +9,12 @@ project('unity', 'c',
     license: 'MIT',
     version: '2.5.1-git',
     meson_version: '>=0.56.0',
-    default_options: ['c_std=c11']
+    default_options: ['c_std=c89']
 )
 
-unity_dir = include_directories('.')
+add_project_arguments('-DUNITY_OUTPUT_COLOR', language: 'c')
 
+unity_dir = include_directories('.')
 unity_lib = static_library(meson.project_name(),
   files('unity.c'),
   implicit_include_directories: false,
