@@ -38,11 +38,6 @@ if cc.get_id() in ['gcc', 'clang'] and get_option('warning_level').to_int() == 3
     add_project_arguments(
       '-Weverything',
       '-Wno-disabled-macro-expansion',
-      # '-Wno-empty-translation-unit',
-      # '-Wshadow',
-      # '-Wunreachable-code-aggressive',
-      # '-Wdeprecated',
-      # '-Wassign-enum',
       language: 'c',
     )
   endif
