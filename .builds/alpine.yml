@@ -28,5 +28,5 @@ tasks:
       git clone --mirror https://git.sr.ht/~aman/xp-getentropy ~/sr.ht-repo
       cd sr.ht-repo
       set +x
-      git push "https://a-vrma:${GH_TOKEN}@github.com/a-vrma/xp-getentropy.git" --all --prune --follow-tags
+      git push "https://a-vrma:${GH_TOKEN}@github.com/a-vrma/xp-getentropy.git" --force --all --prune --follow-tags
       set -x
