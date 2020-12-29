@@ -55,7 +55,8 @@ h() {
 }
 
 default() {
-    debug "$@"
+    echo 'Which task would you like to run?'
+    echo 'Run `./go.sh help` to see all the tasks available.'
 }
 
 TIMEFORMAT="Task completed in %3lR"

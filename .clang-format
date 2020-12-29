@@ -1,4 +1,3 @@
----
 Language: Cpp
 BasedOnStyle: Google
 AlignTrailingComments: false
@@ -10,12 +9,12 @@ BinPackParameters: false
 BreakBeforeBinaryOperators: NonAssignment
 ColumnLimit: 88
 CommentPragmas: ""
-PointerAlignment: Left
 DerivePointerAlignment: false
 IndentCaseLabels: false
 IndentGotoLabels: false
 IndentWidth: 4
 IndentWrappedFunctionNames: true
+PointerAlignment: Left
+ReflowComments: false
 SortIncludes: false
 # vim: ft=yaml
-...
