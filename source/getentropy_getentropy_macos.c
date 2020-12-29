@@ -5,8 +5,10 @@
 
 // clang-format off
 #include "xp_getentropy.h"
-// sys/random.h is not self-contained on macOS. It needs Availibility.h before it.
+// sys/random.h is not self-contained on macOS. It needs Availibility.h and stddef.h
+// before it.
 #include <Availability.h>
+#include <stddef.h>
 #include <sys/random.h>
 #include <errno.h>
 // clang-format on
