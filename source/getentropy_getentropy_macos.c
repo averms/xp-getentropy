@@ -11,7 +11,7 @@
 #include <errno.h>
 // clang-format on
 
-int xp_getentropy(void* buf, size_t len) {
+int xp_getentropy(void* buf, uint32_t len) {
     if (getentropy(buf, len) == -1) {
         // macOS sets errno to EINVAL if len > 256, contrary to the man page.
         // See

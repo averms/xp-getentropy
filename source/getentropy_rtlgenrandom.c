@@ -17,7 +17,7 @@
 #define RtlGenRandom SystemFunction036
 BOOLEAN NTAPI RtlGenRandom(PVOID RandomBuffer, ULONG RandomBufferLength);
 
-int xp_getentropy(void* buf, size_t len) {
+int xp_getentropy(void* buf, uint32_t len) {
     if (len > 256) {
         errno = EIO;
         return -1;

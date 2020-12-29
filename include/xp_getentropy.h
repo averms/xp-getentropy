@@ -4,13 +4,13 @@
 #ifndef XP_GETENTROPY_H_30185295
 #define XP_GETENTROPY_H_30185295
 
-#include <stddef.h>
+#include <stdint.h>
 
 /// Fill a buffer with high-quality entropy. The maximum permitted buffer size is
 /// 256 bytes.
 /// @param[out] buf The buffer to fill.
 /// @param[in] len The length of the buffer, in bytes.
 /// @return 0 on success and -1 on failure.
-int xp_getentropy(void* buf, size_t len);
+int xp_getentropy(void* buf, uint32_t len);
 
 #endif  // XP_GETENTROPY_H_30185295

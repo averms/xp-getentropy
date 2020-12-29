@@ -7,7 +7,7 @@
 #include <sys/random.h>
 #include <errno.h>
 
-int xp_getentropy(void* buf, size_t len) {
+int xp_getentropy(void* buf, uint32_t len) {
     // WASI does not have the 256 byte limitation. At least according to preliminary
     // tests with emscripten.
     if (len > 256) {
