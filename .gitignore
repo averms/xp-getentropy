@@ -4,17 +4,17 @@
 
 # clangd stuff
 .cache/
-compile_commands.json
+/compile_commands.json
 
 # IDE stuff
 /.vscode/
 /.idea/
 
-# Portable meson
+# portable meson, symlink or folder
 /meson-portable
 /meson-portable/
 
-# Misc
+# misc
 /openbsd/
 /manpages/
 /xp_getentropy.tar
