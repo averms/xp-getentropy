@@ -2,6 +2,16 @@
 set -euo pipefail
 shopt -s inherit_errexit
 
+lint() {
+    local prefix
+    if [[ -f /usr/local/share/clang/run-clang-tidy.py ]]; then
+        prefix='/usr/local'
+    elif [[ -f /usr/share/clang/run-clang-tidy.py ]]; then
+        prefix='/usr'
+    fi
+    "$prefix"/share/clang/run-clang-tidy.py -quiet source/ test/
+}
+
 optdebug-clang() {
     CC=clang CC_LD=lld meson setup \
         -Ddebug=false -Dc_args='-ggdb3' -Doptimization=g -Dwarning_level=3 \
@@ -60,4 +70,4 @@ default() {
 }
 
 TIMEFORMAT="Task completed in %3lR"
-time ${@:-default}
+time "${@:-default}"
