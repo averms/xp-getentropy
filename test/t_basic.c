@@ -12,6 +12,7 @@ int main(void) {
     if (res == -1) {
         fputs("Getting entropy failed.\n", stdout);
         fprintf(stdout, "Errno was %d.\n", errno);
+        fprintf(stdout, "EIO is %d.\n", EIO);
         return 1;
     }
 

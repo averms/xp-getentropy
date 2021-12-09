@@ -83,14 +83,14 @@ elif os == 'cygwin'
   srcfile = 'getentropy_getentropy.c'
   lib_args += ['-D_DEFAULT_SOURCE']
 
-elif os == 'emscripten'
+elif os == 'wasi'
   srcfile = 'getentropy_getentropy_wasm.c'
+
 else
   error(
     meson.project_name() + ' hasn\'t been ported to your platform yet.\n'
     + 'Please open an issue at https://todo.sr.ht/~aman/xp-getentropy/.'
   )
-
 endif
 
 inc = include_directories('include')
