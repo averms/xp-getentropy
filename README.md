@@ -1,7 +1,7 @@
 # getentropy cross-platform
 
 [![builds.sr.ht status](https://builds.sr.ht/~aman/xp-getentropy.svg)](https://builds.sr.ht/~aman/xp-getentropy?)
-[![GitHub Actions status](https://github.com/a-vrma/xp-getentropy/workflows/GitHub%20CI/badge.svg)](https://github.com/a-vrma/xp-getentropy/actions)
+[![GitHub Actions status](https://github.com/averms/xp-getentropy/workflows/GitHub%20CI/badge.svg)](https://github.com/averms/xp-getentropy/actions)
 [![Appveyor status](https://ci.appveyor.com/api/projects/status/75kw22knil3leahx?svg=true)](https://ci.appveyor.com/project/ayofloweshiou/xp-getentropy)
 
 A cross-platform way to get cryptographically-secure random bytes.

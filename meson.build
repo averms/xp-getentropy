@@ -7,6 +7,7 @@ project('xp_getentropy', 'c',
     'warning_level=3',
     'strip=true',
     'buildtype=release',
+    'b_ndebug=if-release',
   ]
 )
 
@@ -15,7 +16,6 @@ cc = meson.get_compiler('c')
 if cc.get_id() in ['gcc', 'clang'] and get_option('warning_level').to_int() == 3
   add_project_arguments(
     '-pedantic-errors',
-    '-Wuninitialized',
     '-Wconversion',
     '-Wcast-qual',
     '-Wdouble-promotion',
@@ -36,13 +36,13 @@ if cc.get_id() in ['gcc', 'clang'] and get_option('warning_level').to_int() == 3
     )
   elif cc.get_id() == 'clang'
     add_project_arguments(
-      '-Weverything',
-      '-Wno-disabled-macro-expansion',
+      '-Wshadow',
+      '-Wunreachable-code-aggressive',
+      '-Wdeprecated',
+      '-Wassign-enum',
+      '-Wno-empty-translation-unit',
       language: 'c',
     )
-  endif
-  if get_option('optimization') == 'g'
-    add_project_arguments('-D_FORTIFY_SOURCE=1', language: 'c')
   endif
 endif
 
@@ -65,12 +65,7 @@ elif os == 'darwin'
   srcfile = 'getentropy_getentropy_macos.c'
 
 elif os == 'freebsd'
-  if cc.has_function('getentropy', prefix: '#include <unistd.h>')
-    srcfile = 'getentropy_getentropy.c'
-  else
-    # FreeBSD 11
-    srcfile = 'getentropy_sysctl.c'
-  endif
+  srcfile = 'getentropy_getentropy.c'
 
 elif os == 'netbsd'
   srcfile = 'getentropy_sysctl.c'
@@ -99,7 +94,8 @@ else
 endif
 
 inc = include_directories('include')
-lib = static_library(meson.project_name(), 'source' / srcfile,
+lib = static_library(meson.project_name(),
+  'source' / srcfile,
   c_args: lib_args,
   include_directories: inc,
   implicit_include_directories: false,
@@ -110,15 +106,14 @@ xp_getentropy_dep = declare_dependency(
   include_directories: inc,
 )
 
-unity_proj = subproject('unity')
-unity_dep = dependency('unity')
+unity_dep = dependency('unity', version: '2.5.4')
 
 t_basic = executable('t_basic',
   'test/t_basic.c',
   dependencies: xp_getentropy_dep,
   implicit_include_directories: false,
 )
-t_asking_for_257 = executable('t_more',
+t_more = executable('t_more',
   'test/t_more.c',
   dependencies: [xp_getentropy_dep, unity_dep],
   implicit_include_directories: false,

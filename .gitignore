@@ -1,21 +1,15 @@
-# build directories
-/build/
+# meson
 /b-*/
-
-# clangd stuff
-.cache/
+/subprojects/*/
 /compile_commands.json
-
-# IDE stuff
-/.vscode/
-/.idea/
-
-# portable meson, symlink or folder
-/meson-portable
 /meson-portable/
 
+# clangd
+.cache/
+
+# IDE stuff
+/.idea/
+
 # misc
-/openbsd/
 /manpages/
-/xp_getentropy.tar
 /*.Dockerfile

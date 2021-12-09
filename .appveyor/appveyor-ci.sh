@@ -9,10 +9,10 @@ set -euo pipefail
     install -D samu /usr/local/bin/ninja
 )
 
-git clone --quiet --branch "$APPVEYOR_REPO_BRANCH" 'https://github.com/a-vrma/xp-getentropy.git'
+git clone --quiet --branch "$APPVEYOR_REPO_BRANCH" 'https://github.com/averms/xp-getentropy.git'
 cd xp-getentropy
 
-curl -fsSLO 'https://raw.githubusercontent.com/a-vrma/getmeson.py/b5289de387f84d00b9f06043e49bd3fcd28ece87/getmeson_3.5.py'
+curl -fsSLO 'https://raw.githubusercontent.com/averms/getmeson.py/b5289de387f84d00b9f06043e49bd3fcd28ece87/getmeson_3.5.py'
 python3.8 getmeson_3.5.py
 ./meson-portable/meson.py setup b-release
 cd b-release

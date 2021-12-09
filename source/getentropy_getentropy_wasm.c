@@ -10,9 +10,9 @@
 int xp_getentropy(void* buf, uint32_t len) {
     // WASI does not have the 256 byte limitation. At least according to preliminary
     // tests with emscripten.
-    if (len > 256) {
-        errno = EIO;
-        return -1;
-    }
+    // if (len > 256) {
+    //     errno = EIO;
+    //     return -1;
+    // }
     return getentropy(buf, len);
 }

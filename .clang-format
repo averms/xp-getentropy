@@ -14,7 +14,7 @@ IndentCaseLabels: false
 IndentGotoLabels: false
 IndentWidth: 4
 IndentWrappedFunctionNames: true
-PointerAlignment: Left
+PointerAlignment: Right
 ReflowComments: false
 SortIncludes: false
 # vim: ft=yaml

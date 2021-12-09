@@ -1,0 +1,8 @@
+[wrap-file]
+source_url = https://github.com/averms/unity/archive/refs/tags/v2.5.4.tar.gz
+source_filename = unity-2.5.4.tar.gz
+source_hash = f2ae937d0dd8f7ffe61fd751b90738160975ffd1d9029b7b10aa23140f90fd63
+directory = unity-2.5.4
+
+[provide]
+dependency_names = unity

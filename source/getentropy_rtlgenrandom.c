@@ -14,16 +14,15 @@
 // [2]: https://www.microsoft.com/security/blog/2019/11/25/going-in-depth-on-the-windows-10-random-number-generation-infrastructure/
 // [3]: https://github.com/rust-random/rand/issues/111#issuecomment-316140155.
 
-#define RtlGenRandom SystemFunction036
-BOOLEAN NTAPI RtlGenRandom(PVOID RandomBuffer, ULONG RandomBufferLength);
+BOOLEAN NTAPI SystemFunction036(PVOID RandomBuffer, ULONG RandomBufferLength);
 
-int xp_getentropy(void* buf, uint32_t len) {
+int xp_getentropy(void *buf, uint32_t len) {
     if (len > 256) {
         errno = EIO;
         return -1;
     }
 
-    if (!RtlGenRandom((PVOID)buf, (ULONG)len)) {
+    if (!SystemFunction036((PVOID)buf, (ULONG)len)) {
         errno = EIO;
         return -1;
     }

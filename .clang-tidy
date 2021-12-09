@@ -1,0 +1,16 @@
+# C99 checks
+Checks: >-
+  -*,
+  bugprone-*,
+  cert-*,
+  clang-analyzer-*,
+  clang-diagnostic-*,
+  misc-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  -readability-magic-numbers,
+  -readability-isolate-declaration,
+  -readability-braces-around-statements
+FormatStyle: file
+# vim: ft=yaml

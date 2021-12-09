@@ -26,7 +26,7 @@
 /*
  * Derived from lib/libc/gen/arc4random.c from FreeBSD.
  */
-static inline size_t getentropy_sysctl(u_char* buf, size_t size) {
+static inline size_t getentropy_sysctl(u_char *buf, size_t size) {
     const int mib[2] = {CTL_KERN, KERN_ARND};
     size_t len, done;
 
@@ -45,7 +45,7 @@ static inline size_t getentropy_sysctl(u_char* buf, size_t size) {
     return done;
 }
 
-int xp_getentropy(void* buf, uint32_t len) {
+int xp_getentropy(void *buf, uint32_t len) {
     if (len > 256) {
         errno = EIO;
         return -1;
