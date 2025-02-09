@@ -6,8 +6,8 @@
 
 A cross-platform way to get cryptographically-secure random bytes.
 
-**This library is in a very experimental state. Please wait until I tag a
-release to consider depending on it**.
+**Fortunately, this library has been obsoleted by [POSIX
+2024](https://pubs.opengroup.org/onlinepubs/9799919799/functions/getentropy.html)**.
 
 ## usage
 
