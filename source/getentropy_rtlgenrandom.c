@@ -1,4 +1,4 @@
-// © 2020 Aman Verma <https://aman.raoverma.com/contact.html>
+// © 2020 Aman Verma <https://averms.org/contact.html>
 // Distributed under the ISC license, see LICENSE file for details.
 
 #include "xp_getentropy.h"
